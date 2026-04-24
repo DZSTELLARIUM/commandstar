@@ -1,0 +1,695 @@
+[index.html](https://github.com/user-attachments/files/27055799/index.html)
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اهدِ نجمة لمن تحب ⭐ | Stellarium DZ</title>
+    <meta name="description" content="هدية فريدة… سمِّ نجمة باسم شخص عزيز واحصل على شهادة تخصيص نجمة في السماء.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --bg-color: #030014;
+            --text-main: #f0f0f0;
+            --gold-primary: #D4AF37;
+            --gold-light: #F9E596;
+            --gold-dark: #A67C00;
+            --accent-glow: rgba(212, 175, 55, 0.4);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(212, 175, 55, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(212, 175, 55, 0.05), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(212, 175, 55, 0.05), transparent 25%);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Star Background Effect */
+        .stars-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #000 url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.6;
+        }
+
+        /* Add dynamic moving stars with CSS */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; transform: scale(1.1); box-shadow: 0 0 10px var(--gold-light); }
+        }
+
+        .star-decorator {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 4s infinite ease-in-out;
+        }
+
+        /* Basic Layout */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Amiri', serif;
+            color: var(--gold-primary);
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #ccc;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding-top: 100px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-primary), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none; /* remove default to let gradient shine, or keep minimal */
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        /* CTA Button */
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--gold-dark), var(--gold-primary), var(--gold-light));
+            color: #000;
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px var(--accent-glow);
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+            background: linear-gradient(45deg, var(--gold-primary), var(--gold-light), var(--gold-primary));
+        }
+
+        /* Certificate Section */
+        .certificate-section {
+            background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.05), transparent);
+        }
+
+        .cert-container {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 10px;
+            padding: 10px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 0 40px var(--accent-glow);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); box-shadow: 0 10px 50px rgba(212, 175, 55, 0.6); }
+            100% { transform: translateY(0px); }
+        }
+
+        .cert-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        /* Features / Delivery */
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 30px 20px;
+            width: calc(33.333% - 20px);
+            min-width: 280px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 5px 15px var(--accent-glow);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            color: var(--gold-light);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .feature-desc {
+            font-size: 0.95rem;
+            color: #ddd;
+        }
+
+        /* Order Form Section */
+        .order-section {
+            position: relative;
+        }
+
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(10, 10, 20, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--gold-light);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 10px var(--accent-glow);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        select.form-control {
+            appearance: none;
+            cursor: pointer;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+            padding-right: 15px; /* adjust padding for textarea */
+        }
+
+        /* Icons inside inputs */
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 45px;
+            color: var(--gold-primary);
+            font-size: 1.2rem;
+            pointer-events: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.3rem;
+            border-radius: 10px;
+            border: none;
+            margin-top: 10px;
+        }
+
+        .post-submit-text {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--gold-light);
+            opacity: 0.8;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            background: var(--card-bg);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--border-color);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            color: var(--gold-primary);
+            font-size: 1.1rem;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: #ccc;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 200px;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 50px;
+            color: #666;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1.1rem;
+                padding: 0 15px;
+            }
+            .feature-box {
+                width: 100%;
+            }
+            .form-container {
+                padding: 25px 15px;
+            }
+        }
+    </style>
+    <!-- Add FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="stars-bg"></div>
+    
+    <!-- Dynamic Stars added via JS -->
+    <div id="stars-container"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>اهدِ نجمة لمن تحب ⭐</h1>
+            <p class="hero-subtitle">هدية فريدة… سمِّ نجمة باسم شخص عزيز ❤️ ووثق اللحظة للأبد</p>
+            <a href="#order" class="cta-btn">اطلب الآن</a>
+        </div>
+    </section>
+
+    <!-- Certificate Section -->
+    <section class="certificate-section">
+        <div class="container">
+            <h2>شهادتك الفاخرة</h2>
+            <p style="margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                ستحصل على شهادة رسمية بتصميم أنيق وفريد، مطبوعة بجودة عالية لتكون ذكرى مخلدة واسم يلمع في السماء.
+            </p>
+            <div class="cert-container">
+                <!-- Fallback to a placeholder if the original cert image is not available -->
+                <img src="certificate.jpg" onerror="this.src='https://placehold.co/800x600/030014/D4AF37?text=Certificate+Preview'" alt="مثال على الشهادة الممنوحة" class="cert-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery & Pricing Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2>التوصيل والأسعار</h2>
+            <div class="features">
+                <div class="feature-box">
+                    <div class="feature-icon">🇩🇿</div>
+                    <div class="feature-title">تغطية وطنية</div>
+                    <div class="feature-desc">التوصيل متاح إلى جميع 58 ولاية بضمان السرعة والأمان.</div>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-home" style="color: var(--gold-primary);"></i></div>
+                    <div class="feature-title">توصيل للمنزل</div>
+                    <div class="feature-desc">استلم هديتك حتى باب منزلك بكل راحة بتكلفة <strong>800 دج</strong>.</div>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-box-open" style="color: var(--gold-primary);"></i></div>
+                    <div class="feature-title">توصيل للمكتب</div>
+                    <div class="feature-desc">التوصيل إلى نقطة الاستلام (Point Relais) الأقرب إليك بتكلفة <strong>600 دج</strong>.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Form Section -->
+    <section id="order" class="order-section">
+        <div class="container">
+            <h2>اطلب نجمتك الآن</h2>
+            <p style="margin-bottom: 30px;">يرجى ملء الاستمارة أدناه بعناية لضمان تخصيص هديتك بدقة.</p>
+            
+            <div class="form-container">
+                <!-- Using the requested Formspree endpoint -->
+                <form action="https://formspree.io/f/mwvwdgpk" method="POST">
+                    
+                    <div class="form-group">
+                        <label for="star-name">اسم النجمة</label>
+                        <i class="fas fa-star input-icon" style="top: 48px;"></i>
+                        <input type="text" id="star-name" name="اسم النجمة" class="form-control" placeholder="أدخل الاسم الذي ستسمي به النجمة" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">الرسالة (ستطبع على الشهادة)</label>
+                        <!-- No icon for textarea as it can be awkward -->
+                        <textarea id="message" name="الرسالة" class="form-control" placeholder="اكتب رسالة من القلب لمن تحب..." style="padding-left: 15px;" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customer-name">الاسم واللقب (الزبون)</label>
+                        <i class="fas fa-user input-icon" style="top: 48px;"></i>
+                        <input type="text" id="customer-name" name="اسم الزبون" class="form-control" placeholder="أدخل اسمك الكامل" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">رقم الهاتف</label>
+                        <i class="fas fa-phone input-icon" style="top: 48px;"></i>
+                        <input type="tel" id="phone" name="رقم الهاتف" class="form-control" placeholder="0555XX.. / 0666XX.. / 0777XX.." dir="ltr" style="text-align: right;" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="wilaya">الولاية</label>
+                        <i class="fas fa-map-marker-alt input-icon" style="top: 48px;"></i>
+                        <select id="wilaya" name="الولاية" class="form-control" required>
+                            <option value="" disabled selected>اختر ولايتك</option>
+                            <option value="1- أدرار">1- أدرار</option>
+                            <option value="2- الشلف">2- الشلف</option>
+                            <option value="3- الأغواط">3- الأغواط</option>
+                            <option value="4- أم البواقي">4- أم البواقي</option>
+                            <option value="5- باتنة">5- باتنة</option>
+                            <option value="6- بجاية">6- بجاية</option>
+                            <option value="7- بسكرة">7- بسكرة</option>
+                            <option value="8- بشار">8- بشار</option>
+                            <option value="9- البليدة">9- البليدة</option>
+                            <option value="10- البويرة">10- البويرة</option>
+                            <option value="11- تمنراست">11- تمنراست</option>
+                            <option value="12- تبسة">12- تبسة</option>
+                            <option value="13- تلمسان">13- تلمسان</option>
+                            <option value="14- تيارت">14- تيارت</option>
+                            <option value="15- تيزي وزو">15- تيزي وزو</option>
+                            <option value="16- الجزائر">16- الجزائر</option>
+                            <option value="17- الجلفة">17- الجلفة</option>
+                            <option value="18- جيجل">18- جيجل</option>
+                            <option value="19- سطيف">19- سطيف</option>
+                            <option value="20- سعيدة">20- سعيدة</option>
+                            <option value="21- سكيكدة">21- سكيكدة</option>
+                            <option value="22- سيدي بلعباس">22- سيدي بلعباس</option>
+                            <option value="23- عنابة">23- عنابة</option>
+                            <option value="24- قالمة">24- قالمة</option>
+                            <option value="25- قسنطينة">25- قسنطينة</option>
+                            <option value="26- المدية">26- المدية</option>
+                            <option value="27- مستغانم">27- مستغانم</option>
+                            <option value="28- المسيلة">28- المسيلة</option>
+                            <option value="29- معسكر">29- معسكر</option>
+                            <option value="30- ورقلة">30- ورقلة</option>
+                            <option value="31- وهران">31- وهران</option>
+                            <option value="32- البيض">32- البيض</option>
+                            <option value="33- إليزي">33- إليزي</option>
+                            <option value="34- برج بوعريريج">34- برج بوعريريج</option>
+                            <option value="35- بومرداس">35- بومرداس</option>
+                            <option value="36- الطارف">36- الطارف</option>
+                            <option value="37- تندوف">37- تندوف</option>
+                            <option value="38- تيسمسيلت">38- تيسمسيلت</option>
+                            <option value="39- الوادي">39- الوادي</option>
+                            <option value="40- خنشلة">40- خنشلة</option>
+                            <option value="41- سوق أهراس">41- سوق أهراس</option>
+                            <option value="42- تيبازة">42- تيبازة</option>
+                            <option value="43- ميلة">43- ميلة</option>
+                            <option value="44- عين الدفلى">44- عين الدفلى</option>
+                            <option value="45- النعامة">45- النعامة</option>
+                            <option value="46- عين تموشنت">46- عين تموشنت</option>
+                            <option value="47- غرداية">47- غرداية</option>
+                            <option value="48- غليزان">48- غليزان</option>
+                            <option value="49- تيميمون">49- تيميمون</option>
+                            <option value="50- برج باجي مختار">50- برج باجي مختار</option>
+                            <option value="51- أولاد جلال">51- أولاد جلال</option>
+                            <option value="52- بني عباس">52- بني عباس</option>
+                            <option value="53- إن صالح">53- إن صالح</option>
+                            <option value="54- إن قزام">54- إن قزام</option>
+                            <option value="55- تقرت">55- تقرت</option>
+                            <option value="56- جانت">56- جانت</option>
+                            <option value="57- المغير">57- المغير</option>
+                            <option value="58- المنيعة">58- المنيعة</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="delivery-type">نوع التوصيل</label>
+                        <i class="fas fa-truck input-icon" style="top: 48px;"></i>
+                        <select id="delivery-type" name="نوع التوصيل" class="form-control" required>
+                            <option value="" disabled selected>اختر نوع التوصيل</option>
+                            <option value="توصيل للمنزل (800 دج)">توصيل للمنزل (800 دج)</option>
+                            <option value="توصيل للمكتب (600 دج)">توصيل للمكتب (Point Relais) (600 دج)</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="cta-btn submit-btn">تأكيد الطلب 🚀</button>
+                    <div class="post-submit-text">سيتم التواصل معك خلال دقائق لتأكيد الطلب</div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2>الأسئلة الشائعة</h2>
+            <div class="faq-container">
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>هل فعلاً يتم تسمية نجمة باسمي؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>هذه خدمة رمزية تهدف إلى تقديم هدية مميزة وفريدة، يتم اختيار نجم حقيقي وتخصيص شهادة باسمه، لكنها ليست تسجيل رسمي علمي.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كم يستغرق التوصيل؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>عادة يتم تجهيز الطلب خلال 24 ساعة، والتوصيل يعتمد على الولاية المختارة (من يوم إلى 3 أيام تقريباً).</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>هل يمكن تخصيص الرسالة؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم بالتأكيد، يمكنك كتابة أي رسالة تريد إيصالها لمن تحب وسيتم طباعتها بأناقة على الشهادة.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كيف أتحقق من النجمة؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>تحتوي الشهادة على رمز استجابة سريعة (QR Code) يمكنك مسحه باستخدام كاميرا هاتفك للوصول إلى تفاصيل وموقع النجمة.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Floating Button -->
+    <!-- Replace the phone number below with the real one -->
+    <a href="https://wa.me/213000000000?text=السلام%20عليكم%2C%20أريد%20الاستفسار%20عن%20طلب%20نجمة%20⭐" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Stellarium DZ — جميع الحقوق محفوظة</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // FAQ Accordion functionality
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', event => {
+                const parent = item.parentElement;
+                
+                // Close other open faqs
+                document.querySelectorAll('.faq-item').forEach(faq => {
+                    if (faq !== parent) faq.classList.remove('active');
+                });
+
+                // Toggle current faq
+                parent.classList.toggle('active');
+            });
+        });
+
+        // Add dynamic stars for background decoration
+        const starsContainer = document.getElementById('stars-container');
+        const numStars = 30;
+
+        for (let i = 0; i < numStars; i++) {
+            let star = document.createElement('div');
+            star.className = 'star-decorator';
+            
+            // Random positioning
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = Math.random() * 100 + 'vh';
+            
+            // Random size between 1px and 3px
+            let size = Math.random() * 2 + 1;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            
+            // Random animation delay
+            star.style.animationDelay = Math.random() * 4 + 's';
+            
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+</html>
